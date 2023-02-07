@@ -1,0 +1,8 @@
+#ifndef C2A1E1_MACROS_H
+#define C2A1E1_MACROS_H
+
+#define Product(A, B) ((A) * (B))           /*computes product of 2 variables*/
+#define Negate(A) (-(A))                                 /*negates a variable*/
+#define Elements(A) (sizeof(A) / sizeof 0[A])  /*computes # of array elements*/
+
+#endif
