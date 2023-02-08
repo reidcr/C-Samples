@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+/*
+ * This function returns a pointer to the first element in an array that
+ * matches the given value. If there is no matching value, a null pointer is
+ * returned instead.
+ */
+int *FindFirstInt(const int *ptr, size_t count, int value)
+{
+    /*loops through each array element and compares to given value*/
+    for (size_t index = 0; index < count; ++index)
+    {
+        if (*(ptr + index) == value)
+            /*
+             * cast necessary because ptr is const int and function returns an
+             * int
+             */
+            return((int *)ptr + index);
+    }
+    return(NULL);                               /*no matching value was found*/
+}
