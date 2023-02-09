@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+/* 
+ * dynamically allocates an entirely new block of memory containing newSize
+ * bytes or resizes an existing block in pOld containing oldSize bytes to
+ * contain newSize bytes
+ */
+void *ResizeAlloc(void *pOld, size_t newSize, size_t oldSize)
+{
+    void *pNew;                             /* points to new block of memory */
+    if (newSize == 0)       /* returns null pointer if newSize is not defined*/
+        return(NULL);
+    else
+    {
+        /* ensures new memory is created successfully */
+        if ((pNew = malloc(newSize)) == NULL)
+        {
+            fputs("Out of memory\n", stderr);
+            exit(EXIT_FAILURE);
+        }
+        /* returns ptr to newly created memory if old memory doesn't exist*/
+        else if (pOld == NULL)
+            return(pNew);
+        else
+        {
+            /* 
+             * all existing data that will fit into newSize bytes will be 
+             * preserved 
+             */
+            if (newSize > oldSize)
+                memcpy(pNew, pOld, oldSize);
+            else
+                memcpy(pNew, pOld, newSize);
+            free(pOld);                 /* frees old memory no longer needed */
+            return(pNew);                   /* returns pointer to new memory */
+        }
+    }
+}
