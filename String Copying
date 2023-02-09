@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <ctype.h>
+
+/* 
+ * This function copies a string into another memory location with all 
+ * characters capitalized.  New string must match length of old string.
+ */
+size_t StrToUpper(char *upperstr, const char *lowerstr)
+{
+    /* saves copy of original string for purpose of finding string length */
+    const char *savedstr = lowerstr;
+    /* loops through each string character and capitalizes it */
+    for (; *lowerstr; lowerstr++)
+    {
+        *upperstr++ = toupper(*lowerstr);
+    }
+    *upperstr = '\0';      /* forces new string to match length of old string*/
+    return(lowerstr - savedstr);               /* calculates length of string*/
+}
