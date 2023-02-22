@@ -1,0 +1,58 @@
+C1A6E2_main.c
+
+/*
+ * The purpose of this program is to take two strings input by the user and
+ * return values indicating whether the first string is lexicographically
+ * greater or lesser than the second string.
+ */
+
+#include <stdio.h>
+#include <string.h>
+
+#define LENGTH 129
+
+int MyStrcmp(const char *s1, const char *s2);
+
+int main(void)
+{
+    char buffer1[LENGTH], buffer2[LENGTH];
+
+    /*the following collects the two input strings from user*/
+    printf("Enter the first string: ");
+    fgets(buffer1, LENGTH, stdin);
+    buffer1[strcspn(buffer1, "\n")] = '\0';
+    printf("Enter the second string: ");
+    fgets(buffer2, LENGTH, stdin);
+    buffer2[strcspn(buffer2, "\n")] = '\0';
+
+    /*the following outputs the results of using both comparison functions*/
+    printf("strcmp(\"%s\", \"%s\") returned %d\n", buffer1, buffer2, 
+        strcmp(buffer1, buffer2));
+    printf("MyStrcmp(\"%s\", \"%s\") returned %d\n", buffer1, buffer2, 
+        MyStrcmp(buffer1, buffer2));
+
+    return 0;
+}
+
+C1A6E2_MyStrcmp.c
+
+/*
+ * This function will take in two strings and return a positive or negative
+ * value depending on which is lexicographically greater than the other.
+ */
+
+int MyStrcmp(const char *s1, const char *s2)
+{
+    /*increments until null character reached or until counter reaches two
+    different characters*/
+    while (*s1 != '\0' && *s2 != '\0')
+    {
+        if (*s1 != *s2)
+            return(*s1 - *s2);         /*returns difference if chars unequal*/
+        s1++;
+        s2++;
+    }
+    /*this covers the case where both strings are identical*/
+    return(*s1 - *s2);
+}
+
