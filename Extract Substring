@@ -1,0 +1,59 @@
+C1A6E3_main.c
+
+/*
+ * The purpose of this program is to extract a substring from a string input by
+ * the user.
+ */
+
+#include <stdio.h>
+#include <string.h>
+
+#define LENGTH 256
+
+char *GetSubstring(const char *source, int start, int count, char *result);
+
+int main(void)
+{
+    char source[LENGTH], result[LENGTH] = {0};/*initialize char arrays*/
+    int start, count;                  /*used to pick out desired substring*/
+
+    printf("Enter a string of printable characters: ");
+    fgets(source, LENGTH, stdin);
+    source[strcspn(source, "\n")] = '\0';
+    printf("Enter start and count values: ");
+    scanf("%d %d", &start, &count);
+
+    /*calls function to extract the desired substring*/
+    printf("\"%s\", %d, %d, extracts \"%s\"\n", source, start, count, 
+        GetSubstring(source, start, count, result));
+    return 0;
+}
+
+C1A6E3_GetSubstring.c
+
+/*
+ * This function will take in a string and return a substring of that string.
+ */
+
+char *GetSubstring(const char *source, int start, int count, char *result)
+{
+    char *resultCopy = result;         /*initialize pointer to first char*/
+
+    /*this loop steps through the input string until it reaches the first
+    desired char*/
+    while (*source && start != 0)
+    {
+        ++source;
+        --start;
+    }
+    /*while character is not '\0' and counter has not reached zero*/
+    while (*source && count != 0)      
+    {
+        *resultCopy++ = *source++;     /*copies each char as ptr increments*/
+        --count;
+    }
+        
+    *resultCopy = '\0';                /*appends null char to end of string*/
+    return(result);                    /*return a ptr to first char*/
+}
+
