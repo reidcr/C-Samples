@@ -1,0 +1,68 @@
+C1A5E1_main.c
+
+/*
+ * The purpose of this program is to take a survey with the following specifed
+ * in advance: number of respondents, minimum and maximum response values, and
+ * maximum number of consecutive responses out of bounds.  If an out of bounds
+ * response occurs, the user is reprompted, and the program terminates if the
+ * user enters too many consecutive out of bounds responses.  Once the survey is
+ * completed, the program will then print out a table summarizing all the
+ * responses.
+ */
+
+#include <stdio.h>
+
+/*The following four macros define the survey parameters.*/
+#define MAX_RESPONDENTS 6
+#define MIN_RESPONSE_VALUE 3
+#define MAX_RESPONSE_VALUE 15
+#define OUT_OF_RANGE_LIMIT 3
+
+int main(void)
+{
+    /*initializes response array to all zeros*/
+    int responses[MAX_RESPONSE_VALUE - MIN_RESPONSE_VALUE + 1] = {0};
+    /*calculates array size*/
+    int array_size = sizeof(responses) / sizeof(int);
+    /* this variable will count responses out of range*/
+    int consecutiveRangeErrors = 0;
+
+    for (int responseCount = 0; responseCount < MAX_RESPONDENTS;)
+    {
+        int response;
+        printf("Enter a rating: ");
+        scanf("%d", &response);
+
+        /*ensures response in correct range*/
+        if (MIN_RESPONSE_VALUE <= response && response <= MAX_RESPONSE_VALUE)
+        {
+            ++responses[response - MIN_RESPONSE_VALUE];
+            /*resets error counter to zero if an inbounds response is given*/
+            consecutiveRangeErrors = 0;
+        }
+        else
+        {
+            printf("Response out of specified range. Try again!\n");
+            ++consecutiveRangeErrors;
+            /*tests for error counter exceeding maximum and terminates program
+            if so*/
+            if (consecutiveRangeErrors >= OUT_OF_RANGE_LIMIT)
+            {
+                printf("Too many responses out of specified range. I quit!\n");
+                break;
+            }
+            /*loops again from the beginning to reprompt the same user*/
+            continue;
+        }
+        ++responseCount;                 /*only increments for valid responses*/
+    }
+    /*the following prints out a table summarizing all of the responses for each
+    possible rating*/
+    printf("Rating      Responses\n");
+    printf("------      ---------\n");
+    for (int count = 0; count < array_size; ++count)
+        printf("%4d %13d\n", MAX_RESPONSE_VALUE - count, responses[array_size - 
+            count - 1]);
+
+    return 0;
+}
