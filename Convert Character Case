@@ -1,0 +1,36 @@
+//
+// The purpose of this program is to convert a character from uppercase to
+// lowercase.  Answers to specific questions are as follows:
+// 1. If the user enters anything other than an uppercase character, they will
+//    obtain a character that may be a letter, number, or non-alphanumeric
+//    character.  This is because the program relies on simple arithmetic and
+//    the difference between a lowercase letter and its uppercase equivalent
+//    in the ASCII character code table (which is 32) to do the conversion.
+// 2. If the user precedes the input character with a whitespace, they will
+//    actually be entering two characters into the cin.get prompt and the
+//    cin.get command is only intended to input a single character.  Thus, the
+//    user-intended input character will be ignored.
+//
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    //
+    // This program calculates the difference between decimal equivalents of the
+    // entries for 'a' and 'A' in the ASCII table, which is 32.  Then, the
+    // program asks user to enter a desired uppercase letter, converts it to 
+    // int, adds the result to the case difference constant, and converts the
+    // result back to char.  The converted result is thus the lowercase
+    // equivalent of what the user entered.
+    //
+    const int CASE_DIFF = 'a' - 'A';
+    cout << "Enter a letter: ";
+    char upper = char(cin.get());
+    char lower = char(int(upper) + CASE_DIFF);
+    cout << "The lowercase equivalent of '" << upper << "' is '" << lower 
+        << "'\n";
+
+    return 0;
+}
