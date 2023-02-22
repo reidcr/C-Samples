@@ -1,0 +1,35 @@
+C1A3E1_main.c
+
+/*
+ * The purpose of this program is to output a table showing the cubic sum for 
+ * all numbers from 0 to an integer input by the user.  The cumulative sum will
+ * eventually be incorrect due to overflow, but this problem could be solved by
+ * changing the cubicsum variable type from short to another type such as long
+ * int.
+ */
+
+#include <stdio.h>
+
+int main(void)
+{
+    int userinput;                         /*value input by user*/
+    short cubicsum = 0;                    /*cumulative cubic sum*/
+    printf("Enter a positive integer: ");
+    scanf("%d", &userinput);               /*desired value for cubic sum table*/
+
+    /*first 2 lines of cubic sum table*/
+    printf("nbr    cubic sum\n"
+        "----------------\n");
+
+    /* 
+     * the following loop updates the value of the cumulative cubic sum and
+     * adds a newline to the table
+     */
+    for (int tobecubed = 0; tobecubed <= userinput; ++tobecubed)
+    {
+        cubicsum += (short)(tobecubed * tobecubed * tobecubed);      
+        printf(" %2d       %6d\n", tobecubed, cubicsum);
+    }
+
+    return 0;
+}
