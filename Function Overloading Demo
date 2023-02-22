@@ -1,0 +1,105 @@
+//
+// The purpose of this program is to demonstrate function overloading by using
+// multiple functions with the same name to output a requested character a
+// specified number of times and copied on a specified number of lines.
+//
+
+#include <iostream>
+using namespace std;
+
+// Function prototypes to be used in this program
+void PrintLines();
+void PrintLines(int charValue);
+void PrintLines(int charValue, int charCount);
+void PrintLines(int charValue, int charCount, int lineCount);
+
+const int MAXLOOP = 2;                 // number of times main program executes
+
+int main()
+{
+    // Loop executes a number of times specifed by MAXLOOP macro
+    for (int progCount = 0; progCount < MAXLOOP; progCount++)
+    {
+        char charValue;
+        int charCount, lineCount;
+        cout << "Enter a character and count and lines: ";
+        cin >> charValue >> charCount >> lineCount;
+        // Calls the PrintLines functions based on arguments passed to them
+        PrintLines(charValue, charCount, lineCount);
+        PrintLines(charValue, charCount);
+        PrintLines(charValue);
+        PrintLines();
+    }
+    return 0;
+}
+
+//
+// The purpose of this function is to output a "Z" followed by a newline
+// character.
+//
+
+#include <iostream>
+using namespace std;
+
+void PrintLines()
+{
+    cout << "Z\n";                     // outputs the "Z" followed by a newline
+    return;
+}
+
+//
+// The purpose of this function is to output the character value passed to it.
+//
+
+#include <iostream>
+using namespace std;
+
+void PrintLines(int charValue)
+{
+    cout << char(charValue) << "\n";   // outputs char value passed to function
+    return;
+}
+
+//
+// The purpose of this function is to output the character value passed to it a
+// specified number of times.
+//
+
+#include <iostream>
+using namespace std;
+
+void PrintLines(int charValue, int charCount)
+{
+    // this loop will output the character value passed to this function a
+    // specified number of times and decrements to 0
+    for (; charCount > 0; --charCount)
+    {
+        cout << char(charValue);
+    }
+    cout << "\n";
+    return;
+}
+
+//
+// The purpose of this function is to output the character value passed to it a
+// specified number of times and copied on a specified number of lines.
+//
+
+#include <iostream>
+using namespace std;
+
+void PrintLines(int charValue, int charCount, int lineCount)
+{
+    // loop exits once specified number of lines reached
+    for (; lineCount > 0; --lineCount)
+    {
+        // loop exits once character passed to function is output the specified
+        // number of times on each line
+        for (int charCountMem = charCount; charCountMem > 0; --charCountMem)
+        {
+            cout << char(charValue);
+        }
+        cout << "\n";
+    }
+    return;
+}
