@@ -1,0 +1,51 @@
+C1A4E1_main.c
+
+/*
+ * The purpose of this program is to use two separately written functions to
+ * return the minimum and maximum values of two numbers input by the user.
+ */
+
+#include <stdio.h>
+
+/*Function prototypes of minimum and maximum functions to be used*/
+double ComputeMinimum(double input1, double input2);
+double ComputeMaximum(double input1, double input2);
+
+int main(void)
+{
+    double input1, input2, input_min, input_max;
+    printf("Enter 2 decimal values separated by a space: ");
+    scanf("%lg %lg", &input1, &input2);/*collects desired values to compare*/
+    input_min = ComputeMinimum(input1, input2);/*returns smaller value*/
+    printf("ComputeMinimum(%g, %g) returned %g\n", input1, input2, input_min);
+    input_max = ComputeMaximum(input1, input2);/*returns larger value*/
+    printf("ComputeMaximum(%g, %g) returned %g\n", input1, input2, input_max);
+    return 0;
+}
+
+C1A4E1_ComputeMaximum.c
+
+/*
+ * The purpose of this function is to return the larger of the two values sent 
+ * by the program.
+ */
+
+double ComputeMaximum(double input1, double input2)
+{
+    /*compares both input values and returns smaller of the input pair*/
+    return((input1 > input2) ? input1 : input2);
+}
+
+C1A4E1_ComputeMinimum.c
+
+/*
+ * The purpose of this function is to return the smaller of the two values sent
+ * by the program.
+ */
+
+double ComputeMinimum(double input1, double input2)
+{
+    /*compares both input values and returns smaller of the input pair*/
+    return((input1 < input2) ? input1 : input2);
+}
+
