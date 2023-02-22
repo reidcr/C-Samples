@@ -1,0 +1,58 @@
+//
+// The purpose of this program is to demonstrate default function arguments as
+// an alternative to function overloading by using default values when the
+// program user does not specify a character, specified number of times to
+// output, or specified number of times to copy the line of characters.
+// Otherwise, the program will output the user's desired character a specified
+// number of times copied a specified number of times.
+//
+
+#include <iostream>
+using namespace std;
+
+// Function prototypes to be used in this program
+void PrintLines(int charValue = 'Z', int charCount = 1, int lineCount = 1);
+
+const int MAXLOOP = 2;                 // number of times main program executes
+
+int main()
+{
+    // Loop executes a number of times specifed by MAXLOOP macro
+    for (int progCount = 0; progCount < MAXLOOP; progCount++)
+    {
+        char charValue;
+        int charCount, lineCount;
+        cout << "Enter a character and count and lines: ";
+        cin >> charValue >> charCount >> lineCount;
+        // Calls the PrintLines functions based on arguments passed to them
+        PrintLines(charValue, charCount, lineCount);
+        PrintLines(charValue, charCount);
+        PrintLines(charValue);
+        PrintLines();
+    }
+    return 0;
+}
+
+//
+// The purpose of this function is to output the character value passed to it a
+// specified number of times and copied on a specified number of lines.
+//
+
+#include <iostream>
+using namespace std;
+
+void PrintLines(int charValue, int charCount, int lineCount)
+{
+    // loop exits once specified number of lines reached
+    for (; lineCount > 0; --lineCount)
+    {
+        // loop exits once character passed to function is output the specified
+        // number of times on each line
+        for (int charCountMem = charCount; charCountMem > 0; --charCountMem)
+        {
+            cout << char(charValue);
+        }
+        cout << "\n";
+    }
+    return;
+}
