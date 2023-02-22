@@ -1,0 +1,33 @@
+//
+// The purpose of this program is to show several examples of expressions that
+// should be written more compactly, and what their most compact forms are.
+//
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    //The following outputs 14 example equations.  Two are already in their
+    //most appropriate forms and do not need further simplification, two have
+    //two most appropriate forms due to incrementing or decrementing the
+    //variable, four are merely negating the variable which can be represented
+    //by ax = -ax, and the remaining six are simplified to an
+    //object operator = expression form.
+    cout << "\"ax = ax + bx\" should be \"ax += bx\"\n"
+        "\"ax = ax / -bx\" should be \"ax /= -bx\"\n"
+        "\"ax = bx / ax\" should be \"ax = bx / ax\"\n"
+        "\"ax = -1 * ax\" should be \"ax = -ax\"\n"
+        "\"ax = -ax * ax\" should be \"ax *= -ax\"\n"
+        "\"ax = -bx * ax\" should be \"ax *= -bx\"\n"
+        "\"ax = bx - ax\" should be \"ax = bx - ax\"\n"
+        "\"ax = 2 + ax\" should be \"ax += 2\"\n"
+        "\"ax = 1 + ax\" should be \"++ax\" or \"ax++\"\n"
+        "\"ax = ax - 37\" should be \"ax -= 37\"\n"
+        "\"ax = ax - 1\" should be \"--ax\" or \"ax--\"\n"
+        "\"ax *= -1\" should be \"ax = -ax\"\n"
+        "\"ax /= -1\" should be \"ax = -ax\"\n"
+        "\"ax = 0 - ax\" should be \"ax = -ax\"\n";
+
+    return 0;
+}
