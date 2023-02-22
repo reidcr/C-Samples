@@ -1,0 +1,49 @@
+C1A6E1_main.c
+
+/*
+ * The purpose of this program is to take a string input by the user and output
+ * its length, both using the standard strlen function as well as a function
+ * called MyStrlen which has the same functionality as strlen.
+ */
+
+#include <stdio.h>
+#include <string.h>                    /*needed for strlen function*/
+
+/*this is used to create an input buffer for the character string*/
+#define LENGTH 129
+
+size_t MyStrlen(const char *s1);       /*function prototype for MyStrlen*/
+
+int main(void)
+{
+    char buffer[LENGTH];               /*initializes input buffer*/
+
+    printf("Enter a string: ");
+    fgets(buffer, LENGTH, stdin);
+    buffer[strcspn(buffer, "\n")] = '\0';     /*collects user input*/
+
+    /*prints out results of both functions*/
+    printf("strlen(\"%s\") returned %zu\n", buffer, strlen(buffer));
+    printf("MyStrlen(\"%s\") returned %zu\n", buffer, MyStrlen(buffer));
+
+    return 0;
+}
+
+C1A6E1_MyStrlen.c
+
+/*
+ * This function will take in a string, set one pointer to the beginning of the
+ * string and increment another pointer until it gets to the null character.
+ * The two pointers will then be subtracted to return the length of the string.
+ */
+
+#include <stdlib.h>
+
+size_t MyStrlen(const char *s1)
+{
+    const char * const START = s1;     /*defines starting pointer*/
+    while (*s1)                        /*increments pointer until null char*/
+        s1++;       
+    return (size_t)(s1 - START);       /*returns length of string*/
+}
+
