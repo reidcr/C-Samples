@@ -1,0 +1,25 @@
+C1A1E2_main.c
+
+/*
+ * This program will ask the user for a decimal number and evaluate
+ * f(x) = 3x^3 - 5x^2 + 6 for a given value of x.
+ */
+
+#include <stdio.h>
+
+int main(void)
+{
+    /*output is defined as the value of the polynomial as a function of input*/
+    double input, output; 
+
+    /*
+     *The following ask user to enter a decimal number and evaluates the
+     *polynomial value for that number
+     */
+    printf("Enter a number: ");
+    scanf("%lf", &input);
+    output = (3 * (input * input * input)) - (5 * (input * input)) + 6;
+    printf("If x = %g the value of \"3x^3 - 5x^2 + 6\" is %g\n", input, output);
+
+    return 0;
+}
