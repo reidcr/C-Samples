@@ -1,0 +1,91 @@
+//
+// The purpose of this program is to take an integer input by the user and spell
+// out all the digits of said input, leading with "minus" if the number is
+// negative.
+//
+
+#include <iostream>
+using namespace std;
+
+const int RADIX = 10;                  // used for eliminating digits as needed
+const int MIN_DIVIDEND = RADIX - 1;    // used for pulling out MSD's
+
+int main()
+{
+    int inValue, divisor = 1, dividend;
+
+    // collects the desired user input and starts the conversion of the integer
+    // value into words
+    cout << "Enter any decimal integer value: ";
+    cin >> inValue;
+    cout << "\"" << inValue << "\" in words is \"";
+
+    // outputs "minus" if input value is negative and changes sign to simplify
+    // calculations
+    if (inValue < 0)
+    {
+        inValue = -inValue;
+        cout << "minus ";
+    }
+
+    // This loop finds a power of 10 divisor that will produce the MSD of the 
+    // positive input value
+    for (dividend = inValue; dividend > MIN_DIVIDEND;)
+    {
+        divisor *= RADIX;
+        dividend /= RADIX;
+    }
+
+    // This loop picks off the digits of the positive input value from left to 
+    // right and displays them as words, starting with the dividend value
+    // initialized to the positive input value    
+    dividend = inValue;
+    do
+    {
+        int radixdigit = dividend / divisor;
+        switch (radixdigit)
+        {
+            case 0:
+                cout << "zero";
+                break;
+            case 1:
+                cout << "one";
+                break;
+            case 2:
+                cout << "two";
+                break;
+            case 3:
+                cout << "three";
+                break;
+            case 4:
+                cout << "four";
+                break;
+            case 5:
+                cout << "five";
+                break;
+            case 6:
+                cout << "six";
+                break;
+            case 7:
+                cout << "seven";
+                break;
+            case 8:
+                cout << "eight";
+                break;
+            case 9:
+                cout << "nine";
+                break;
+        }
+        dividend -= radixdigit * divisor;
+        divisor /= RADIX;
+
+        // inserts a space between words, while making sure there is no ending 
+        // space when the program has finished displaying words
+        if (divisor != 0)
+            cout << " ";
+    } while (divisor != 0);
+
+    cout << "\"\n";
+
+    return 0;
+}
