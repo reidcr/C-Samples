@@ -1,0 +1,47 @@
+C1A5E2_main.cpp
+
+//
+// The purpose of this program is to compare two user-entered decimal numbers
+// and return references to the smaller and larger values.
+// 
+
+#include <iostream>
+using namespace std;
+
+// function prototypes for computing maximum and minimum
+double &ComputeMinimum(const double &input1, const double &input2);
+double &ComputeMaximum(const double &input1, const double &input2);
+
+int main()
+{
+    // The following block of code asks for two decimal values and returns
+    // references to the smaller and larger values.
+    double input1, input2;
+    cout << "Enter two decimal values separated by a space: ";
+    cin >> input1 >> input2;
+    cout << "ComputeMinimum(" << input1 << ", " << input2 << ") returned " 
+        << ComputeMinimum(input1, input2) << "\n";
+    cout << "ComputeMaximum(" << input1 << ", " << input2 << ") returned " 
+        << ComputeMaximum(input1, input2) << "\n";
+    return 0;
+}
+
+// 
+// The purpose of this function is to return a reference to the larger of the
+// two values sent by the program.
+//
+
+double &ComputeMaximum(const double &input1, const double &input2)
+{
+    return((double &)((input1 > input2) ? input1 : input2));
+}
+
+// 
+// The purpose of this function is to return a reference to the smaller of the
+// two values sent by the program.
+//
+
+double &ComputeMinimum(const double &input1, const double &input2)
+{
+    return((double &)((input1 < input2) ? input1 : input2));
+}
