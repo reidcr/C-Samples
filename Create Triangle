@@ -1,0 +1,36 @@
+C1A2E2_main.c
+
+/*
+ * The purpose of this program is to create a triangle with rows consisting of 
+ * the consecutive digits 0-9 rolled over as necessary and ending with a
+ * desired character, '@' in this case.
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#define DIAGONAL_CHAR '@'
+
+int main(void)
+{
+    int user_input, line_count;
+    printf("Enter a positive decimal integer value: ");
+    scanf("%d", &user_input);          /*User inputs desired number*/
+    user_input %= 10;                  /*Obtains LSD of user input*/
+    int lead_char = user_input;        /*1st value for triangle output*/
+    int line_num = 0;
+    
+    /*Outer loop keeps track of the lines*/
+    for (line_count = 0; line_count < user_input; ++line_count)
+    {
+        /*Inner loop keeps track of the leader characters*/
+        for (line_count = 0; line_count < line_num; ++line_count)
+        {
+            printf("%d", lead_char);   /*outputs current digit*/
+            ++lead_char;               /*increments current digit*/
+            lead_char %= 10;           /*Ensures leader chars are single digit*/
+        }
+        printf("%c\n", DIAGONAL_CHAR); /*outputs diag char, starts new line*/
+        line_num++;                    /*ready to start filling out new line*/
+    }    
+}
