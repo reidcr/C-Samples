@@ -1,0 +1,50 @@
+//
+// The purpose of this program is to use macros and inline functions to compute
+// and display the maximum of three values input by the user.
+//
+
+#include <iostream>
+#include "C1A4E4_MaxOf.h"
+using namespace std;
+
+int main()
+{
+    long double input1, input2, input3;//represents values input by user
+    cout << "Enter three numbers: ";
+    cin >> input1 >> input2 >> input3;
+
+    // Calculates and displays the maximum of the three values input by the user
+    cout << "mMaxOf3(" << input1 << ", " << input2 << ", " << input3 <<
+        ") returned " << mMaxOf3(input1, input2, input3) << "\nfMaxOf3(" <<
+        input1 << ", " << input2 << ", " << input3 << ") returned " <<
+        fMaxOf3(input1, input2, input3) << "\n";
+
+    return 0;
+}
+
+//
+// The purpose of this file is to provide the definitions of the macros and
+// inline functions needed to compute the maximum values of those passed to it.
+//
+
+#ifndef C1A4E4_MAXOF_H
+#define C1A4E4_MAXOF_H
+
+// Macro definitions for obtaining maximum of two or three values passed
+#define mMaxOf2(A, B) ((A) > (B) ? (A) : (B))
+#define mMaxOf3(A, B, C) (mMaxOf2(mMaxOf2((A), (B)), (C)))
+
+// Equivalent inline function for first macro to compute maximum of two values
+inline long double fMaxOf2(long double A, long double B)
+{
+    return A > B ? A : B;
+}
+
+// Equivalent inline function for second macro to compute maximum of three
+// values
+inline long double fMaxOf3(long double A, long double B, long double C)
+{
+    return fMaxOf2(fMaxOf2(A, B), C);
+}
+
+#endif
