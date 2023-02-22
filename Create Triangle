@@ -34,3 +34,42 @@ int main(void)
         line_num++;                    /*ready to start filling out new line*/
     }    
 }
+
+//
+// The purpose of this program is to create a triangle with rows consisting of
+// the consecutive digits 0-9 rolled over as necessary and ending with a desired
+// character set with a macro.
+//
+
+#include <iostream>
+using namespace std;
+
+const char DIAGONAL_CHAR = '$';
+const int GET_LSD = 10;
+
+int main()
+{
+    int user_input, max_line;
+    cout << "Enter a positive decimal integer value: ";
+    cin >> user_input;                 // User inputs desired number
+    max_line = user_input;             // Preserves value input by user
+    user_input %= GET_LSD;             // Obtains LSD of user input
+    int lead_char = user_input;        // 1st value for triangle output
+    int line_num = 0;
+
+    // Outer loop keeps track of the lines
+    for (int line_count = 0; line_count < max_line; ++line_count)
+    {
+        // Inner loop keeps track of the leader characters
+        for (line_count = 0; line_count < line_num; ++line_count)
+        {
+            cout << lead_char;         // Outputs current digit
+            ++lead_char;               // Increments current digit
+            lead_char %= GET_LSD;      // Ensures leader chars are single digit
+        }
+        cout << DIAGONAL_CHAR << "\n"; // Outputs diagonal char, starts newline
+        line_num++;                    // Ready to start filling out newline
+    }
+
+    return 0;
+}
