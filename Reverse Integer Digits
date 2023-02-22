@@ -1,0 +1,47 @@
+//
+// The purpose of this program is to take an integer input by the user and 
+// reverse the digits based solely upon the numeric value instead of the
+// individual characters entered, with the - sign being placed last if the value
+// is negative.
+//
+
+#include <iostream>
+using namespace std;
+
+const int RADIX = 10;                  // used to pull out each digit as needed
+
+int main()
+{
+    int inValue;
+    bool ispositive;                   // used to check whether input positive
+    cout << "Enter any decimal integer value: ";
+    cin >> inValue;
+    cout << "\"" << inValue << "\" in reverse is \"";
+
+    // this checks whether the user input a negative number; if so, the program
+    // changes the number to positive and will add the - sign at the end
+    if (inValue < 0)
+    {
+        ispositive = false;
+        inValue = -inValue;
+    }
+    else
+        ispositive = true;
+
+    // this loop executes as long as the updated input value is not zero, and
+    // the loop will execute at least once, accounting for a possible input of 
+    // zero
+    do
+    {
+        cout << inValue % RADIX;         // pulls out LSD from current number
+        inValue /= RADIX;                // removes LSD from current number
+    } while (inValue != 0);
+
+    // this outputs a - sign at the end if the user input a negative value
+    if (ispositive == false)
+        cout << "-";
+
+    cout << "\"\n";
+
+    return 0;
+}
